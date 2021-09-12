@@ -1,5 +1,6 @@
 # learning-django
-Udemy course on Django 2021 - https://github.com/divanov11/Django-2021
+Udemy course on Django 2021 - https://github.com/divanov11/Django-2021 -
+https://www.udemy.com/course/python-django-2021-complete-course/
 
 ## Getting started 
 1. Environment setup
