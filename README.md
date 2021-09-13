@@ -127,4 +127,57 @@ We then adjust the views.py file like so:
 def project(request, pk):
         return render(request, 'projects/single-project.html')
 
+### Rendering Data to Templates
+Django uses templating engine ginger.
 
+Variables are surrounded by {{ and }}.
+
+Dictionary lookup, attribute lookup and list-index lookups are implemented with
+a dot notation: 
+{{ my_dict.key }}
+{{ my_object.attribute }}
+{{ my_list.0 }}
+
+Tags:
+This is a way of adding python language into the template: 
+{% %}
+If using an if statement you need to use a 'closing tag': 
+{% if user.is_authenticated %}Hello, {{ user.username }}.{% endif %}
+
+Filters: using pipes 
+{{ django | title }}
+
+We can pass in data to our templates via the view.py functions like so:
+``` 
+def projects(request):
+    page = 'projects'
+    number = 11
+    context = {'page': page, 'number': number}
+    return render(request, 'projects/projects.html', context)
+```
+
+Using an elseif example: 
+```
+{% if number > 10 %}
+<p>Number is greater than 10</p>
+{% else %}
+<p>Number is less than 10</p>
+{% endif %}
+```
+
+Using the id:
+```
+def project(request, pk):
+    projectObj = None
+    for i in projectsList:
+        if i['id'] == pk:
+            projectObj = i
+    return render(request, 'projects/single-project.html', {'project': projectObj})
+```
+
+Passing in routes: 
+Instead of passing in a static url to a html tag, we can use django, and use the
+route name='project' 
+```
+<a href="{% url 'project' project.id %}">
+``` 
