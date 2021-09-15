@@ -181,3 +181,48 @@ route name='project'
 ```
 <a href="{% url 'project' project.id %}">
 ``` 
+
+## Building our Database
+### Models and Admin Panel
+Django already preps some defaults to setup the database. 
+
+To run migrations (not using your own via make migrations) run:
+```
+python manage.py migrate 
+```
+You could then go to /admin to access the admin panel.
+
+To create a user run: 
+```
+python manage.py createsuperuser
+```
+
+By default, using migrations, will create a Groups and Users table. 
+
+Python uses classes and inherits from Django models. 
+When you have created a model, in the models.py file, you then need to run: 
+```
+python manage.py makemigrations
+<!-- Then run the migrations  -->
+python manage.py migrate
+```
+This will add data to the migrations folder. 
+
+When accessing via the admin panel, we can access our Products model by first
+registering the model in the admin.py file, like so: 
+
+```
+from django.contrib import admin
+
+# Register your models here.
+from .models import Project
+
+admin.site.register(Project)
+```
+
+However, you'll notice when we add some projects, the names will not be the
+names of what we inserted. To change this we can add a method to the model: 
+```
+def __str__(self):
+        return self.title
+```
