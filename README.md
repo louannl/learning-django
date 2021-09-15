@@ -240,3 +240,29 @@ many-to-many
 
 on_delete=models.SET_NULL --> if the item is deleted for the foreign table 
 it will set this field to null rather than cascade delete.
+
+### Database Queries 
+Again, this is pretty similar to others I have used. 
+
+Let's us interact with the database: 
+```
+python manage.py shell
+```
+We can use it like so: 
+```
+from projects.models import Project
+projects = Project.objects.all()
+print(projects)
+```
+
+To query the children we can use .childmodel_set.all()
+e.g. project.review_set.all(), will give the review table too. 
+
+For a many-to-many relationship we can use .relationshipname.all()
+e.g. project.tags.all()
+
+Querying in our views file: We can query like so:
+from .models import Project
+
+def projects(request):
+    projects = Project.objects.all()
