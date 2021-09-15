@@ -226,3 +226,17 @@ names of what we inserted. To change this we can add a method to the model:
 def __str__(self):
         return self.title
 ```
+
+### Database Relationships
+drawsql.app is pretty useful for visualizing the relationships.
+
+I know quite a bit about relational databases so I'm going to gloss over this 
+section...
+
+Relationship types: 
+one-to-one
+one-to-many
+many-to-many
+
+on_delete=models.SET_NULL --> if the item is deleted for the foreign table 
+it will set this field to null rather than cascade delete.
