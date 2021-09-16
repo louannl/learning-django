@@ -266,3 +266,32 @@ from .models import Project
 
 def projects(request):
     projects = Project.objects.all()
+
+## Create Update Delete (CRUD)
+### Model Forms
+Django forms use a cdrf_token to ensure the data is clean. 
+
+We can make a form template using the table as a reference: (forms.py):
+```
+from django.forms import ModelForm
+from .models import Project
+
+
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = '__all__'
+```
+fields = '__all__' creates fields based on every attribute (except un-editable
+and auto-generate fields e.g. id and createdAt)
+
+We can then import this to the views folder and use it like so: 
+
+def createProject(request):
+    form = ProjectForm()
+    context = {'form': form}
+    return render(request, "projects/project_form.html", context)
+
+We could also do things on the template such as:
+{{form.as_p}}
+Which will wrap each form item in a paragraph tag.
