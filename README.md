@@ -295,3 +295,14 @@ def createProject(request):
 We could also do things on the template such as:
 {{form.as_p}}
 Which will wrap each form item in a paragraph tag.
+
+### Create Read Update Delete (CRUD)
+we can add to our form a post request: 
+
+if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+
+Similarly, we can use a similar format for delete etc.
