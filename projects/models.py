@@ -1,5 +1,5 @@
-from django.db import models
 import uuid
+from django.db import models
 
 
 class Project(models.Model):
@@ -8,6 +8,7 @@ class Project(models.Model):
     description = models.TextField(
         null=True, blank=True)
     # Null means it can be empty, Blank is for Django to know
+    featured_image = models.ImageField(null=True, blank=True, default="default.jpg")
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
@@ -17,6 +18,7 @@ class Project(models.Model):
         auto_now_add=True)  # automatically create this
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
+
     # by default django makes an id integer value with auto increment.
 
     def __str__(self):

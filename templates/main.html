@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html>
-  <head>
+{% load static %}
+<html lang="eg">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>DevSearch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href=""> -->
-  </head>
-  <body>
-    {% include 'navbar.html' %}
+    <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="{% static 'styles/main.css' %}"
+    >
+</head>
+<body>
+{% include 'navbar.html' %}
 
-    {% block content %}
+{% block content %}
 
-    {% endblock content %}
-    <p>FOOTER</p>
-  </body>
+{% endblock content %}
+<p>FOOTER</p>
+</body>
 </html>

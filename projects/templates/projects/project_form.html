@@ -3,11 +3,11 @@
 
 <h1>Project Form</h1>
 
-<form action="" method="Post">
-  {% csrf_token %}
+<form action="" method="Post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-  {{form.as_p}}
-  <input type="submit">
+    {{form.as_p}}
+    <input type="submit">
 </form>
 
 {% endblock %}
