@@ -368,4 +368,8 @@ The 'collect static' command will take all these static files and bundle them fo
 python manage.py collectstatic
 ```
 
-You should run this before deployment after any changes. 
+You should run this before deployment after any changes.
+
+### Theme Installation
+
+FORM:
