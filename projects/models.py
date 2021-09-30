@@ -1,14 +1,18 @@
 import uuid
 from django.db import models
+from users.models import Profile
 
 
 class Project(models.Model):
+    owner = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=models.SET_NULL)
     # Max length is required for this field
     title = models.CharField(max_length=200)
     description = models.TextField(
         null=True, blank=True)
     # Null means it can be empty, Blank is for Django to know
-    featured_image = models.ImageField(null=True, blank=True, default="default.jpg")
+    featured_image = models.ImageField(
+        null=True, blank=True, default="default.jpg")
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)

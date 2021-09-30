@@ -373,3 +373,31 @@ You should run this before deployment after any changes.
 ### Theme Installation
 
 FORM:
+We can add the following to forms.py to dynamically add a class to our form attributes:
+
+```
+    widgets = {
+            'tags': forms.CheckboxSelectMultiple(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input'})
+
+        # self.fields['title'].widget.attrs.update({'class': 'input', 'placeholder': 'Add Title'})
+
+```
+
+## Add More Apps
+
+### Users Apps
+
+Like before we can run the following command to set up a default file:
+
+```
+python manage.py startapp users
+```
+
+And again we add to our settings file the installed app for users.
