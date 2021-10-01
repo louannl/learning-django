@@ -11,8 +11,6 @@ F
 static/styles/main.css,8/4/840d61cc6547984840ba53233bb59f29c063f8c5
 C
 templates/main.html,7/0/70463c664bcf38fa5d46b8f3fd74b75dac46c512
-D
-templates/index.html,f/6/f69b8ce2e31684ae06f1b3e84821e07e3dfddb2f
 _
 /projects/templates/projects/single-project.html,7/2/729ec15942816a9bcdddcfe1887d617f9aa79f31
 Y
@@ -41,3 +39,5 @@ A
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ?
 users/models.py,f/1/f121007a966dcbe0e6d77b6ca09948108f3edfbb
+D
+templates/index.html,f/6/f69b8ce2e31684ae06f1b3e84821e07e3dfddb2f
