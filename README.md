@@ -401,3 +401,19 @@ python manage.py startapp users
 ```
 
 And again we add to our settings file the installed app for users.
+
+### Signals
+
+Django provides a set of built-in signals that let user code get notified by Django itself of certain actions.
+
+```
+def profileUpdated(sender, instance, created, **kwargs):
+    print('Profile saved!')
+
+
+post_save.connect(profileUpdated, sender=Profile)
+```
+
+Any time the save method is called on the profile model, profileUpdated will run.
+
+### Added Docker Because I Can
