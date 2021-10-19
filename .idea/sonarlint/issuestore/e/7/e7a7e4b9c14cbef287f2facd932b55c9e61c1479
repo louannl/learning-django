@@ -1,5 +1,0 @@
-
-wpython:S117"[Rename this local variable "projectObj" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ñ“£Êýÿÿÿÿ
-kpython:S1542"SRename function "createProject" to match the regular expression ^[a-z_][a-z0-9_]*$.(ç¹Óæ
-ppython:S1542 "SRename function "updateProject" to match the regular expression ^[a-z_][a-z0-9_]*$.(’„æ·ÿÿÿÿÿ
-ppython:S1542."SRename function "deleteProject" to match the regular expression ^[a-z_][a-z0-9_]*$.(Èâï½þÿÿÿÿ
