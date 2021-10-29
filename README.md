@@ -3,6 +3,8 @@
 Udemy course on Django 2021 - https://github.com/divanov11/Django-2021 -
 https://www.udemy.com/course/python-django-2021-complete-course/
 
+## Docker compose up it~
+
 ## Getting started
 
 1. Environment setup

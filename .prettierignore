@@ -1,0 +1,2 @@
+# django templates don't play nice with prettier's formatting
+*.html
