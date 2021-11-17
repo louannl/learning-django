@@ -1,17 +1,19 @@
+from django.core import paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from projects.utils import searchProjects
+from projects.utils import paginateProjects, searchProjects
 
 from .models import Project
 from .forms import ProjectForm
 
 
 def projects(request):
-
     projects, search_query = searchProjects(request)
+    custom_range, projects = paginateProjects(request, projects, 1)
 
-    context = {'projects': projects, 'search_query': search_query}
+    context = {'projects': projects,
+               'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/projects.html', context)
 
 
@@ -21,7 +23,7 @@ def project(request, pk):
                   {'project': projectObj})
 
 
-@login_required(login_url="login")
+@ login_required(login_url="login")
 def createProject(request):
     profile = request.user.profile
     form = ProjectForm()
@@ -38,7 +40,7 @@ def createProject(request):
     return render(request, "projects/project_form.html", context)
 
 
-@login_required(login_url="login")
+@ login_required(login_url="login")
 def updateProject(request, pk):
     profile = request.user.profile
     # only a logged in user can continue
@@ -55,7 +57,7 @@ def updateProject(request, pk):
     return render(request, "projects/project_form.html", context)
 
 
-@login_required(login_url="login")
+@ login_required(login_url="login")
 def deleteProject(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
