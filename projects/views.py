@@ -1,11 +1,11 @@
-from django.core import paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from projects.utils import paginateProjects, searchProjects
 
 from .models import Project
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 
 
 def projects(request):
@@ -19,11 +19,27 @@ def projects(request):
 
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
-    return render(request, 'projects/single-project.html',
-                  {'project': projectObj})
+    form = ReviewForm()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = projectObj
+        review.owner = request.user.profile
+        review.save()
+
+        projectObj.getVoteCount
+
+        messages.success(request, 'Your review was successfully submitted!')
+        return redirect('project', pk=projectObj.id)
+
+    return render(request,
+                  'projects/single-project.html',
+                  {'project': projectObj, 'form': form}
+                  )
 
 
-@ login_required(login_url="login")
+@login_required(login_url="login")
 def createProject(request):
     profile = request.user.profile
     form = ProjectForm()
@@ -40,7 +56,7 @@ def createProject(request):
     return render(request, "projects/project_form.html", context)
 
 
-@ login_required(login_url="login")
+@login_required(login_url="login")
 def updateProject(request, pk):
     profile = request.user.profile
     # only a logged in user can continue
@@ -57,7 +73,7 @@ def updateProject(request, pk):
     return render(request, "projects/project_form.html", context)
 
 
-@ login_required(login_url="login")
+@login_required(login_url="login")
 def deleteProject(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
